@@ -21,7 +21,19 @@ RUN cd prism-games/prism \
 RUN git clone https://github.com/prismmodelchecker/prism.git \
     && cd prism/prism \
     && make
+RUN apt install  openssh-server sudo -y
+RUN apt-get -y install net-tools
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 prism 
+RUN echo 'prism:prism' | chpasswd
+RUN service ssh start
+
+EXPOSE 22
+
 
 ENV DISPLAY=host.docker.internal:0
 # RUN echo "export DISPLAY=host.docker.internal:0" >> ~/.bashrc \
     # && source ~/.bashrc
+
+CMD ["/usr/sbin/sshd","-D"]
+
+ENTRYPOINT service ssh start && bash
