@@ -18,8 +18,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    py_modules=["prismInterface"],
-    package_dir={"": "src"},
-    packages=setuptools.find_packages(where="src"),
+    packages=["prism_docker_interface"],
     python_requires=">=3.6",
 )
