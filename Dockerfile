@@ -18,18 +18,18 @@ RUN wget http://www.bugseng.com/products/ppl/download/ftp/releases/1.2/ppl-1.2.t
     && tar xfz ppl-1.2.tar.gz \
     && cd ppl-1.2 \
     && ./configure --enable-interfaces=java --with-java=$JAVA8_HOME \
-    && make -j 4 \
-    && make -j 4 install
+    && make \
+    && make install
 
 # Build prism-game
 RUN git clone https://github.com/prismmodelchecker/prism-games.git \
     && cd prism-games/prism \
-    && make -j 4 PPL_DIR=/usr/local/lib
+    && make PPL_DIR=/usr/local/lib
 
 # BUild prism
 RUN git clone https://github.com/prismmodelchecker/prism.git \
     && cd prism/prism \
-    && make -j 4
+    && make
 
 # Link binary to local binaries so that we can call them from anywhere
 RUN ln -s /prism-games/prism/bin/prism /usr/local/bin/prismgames

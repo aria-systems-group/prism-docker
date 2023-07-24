@@ -64,17 +64,3 @@ cd /prism-games/prism/bin && ./xprism
 ## SSH Connection
 
 The ssh server is running in the container by default. You can login by connecting to localhost(127.0.0.1) using the username `prism` and password `prism`. By default, the host's internal port `22` is mapped to container's ssh port `22`. You can change these ports while creating the container in `Step 2`.
-
-## Check Installation
-
-To check if everything worked, you can try the following inside the container (the second one will only work if PPL was successfully installed):
-
-```bash
-cd /prism-games/prism
-make PPL_DIR=/usr/local/lib
-make test testppl
-```
-
-The test should ultimately display: "Testing result: PASS"
-
-
